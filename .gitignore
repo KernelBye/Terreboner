@@ -1,0 +1,9 @@
+.cache
+.d
+.DS_Store
+.env
+.idea
+.vscode
+build
+bin
+DISTANCE_SENSORS_README.md

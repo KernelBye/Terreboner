@@ -2,6 +2,7 @@
 
 #include "EZ-Template/api.hpp"
 #include "api.h"
+#include "pros/distance.hpp"
 
 extern Drive chassis;
 
@@ -12,3 +13,9 @@ inline pros::Motor lever(-14);   // Outake motor on port 14
 inline ez::Piston matchload('B');  // Dropper piston on ADI port B
 inline ez::Piston forebar('A');      // Arm piston on ADI port A
 inline ez::Piston descore_wing('H');  // Descore wing on ADI port H
+
+// Distance sensors for wall detection and pose correction
+extern pros::Distance front_dist;
+extern pros::Distance back_dist;
+extern pros::Distance left_dist;
+extern pros::Distance right_dist;

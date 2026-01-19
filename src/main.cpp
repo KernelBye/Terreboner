@@ -9,8 +9,8 @@ ez::Drive chassis(
     4.125,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
     600);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
-  ez::tracking_wheel horiz_tracker(8, 2.125, -1.57);  // This tracking wheel is perpendicular to the drive wheels
-  ez::tracking_wheel vert_tracker(18, 2.125, 0);   // This tracking wheel is parallel to the drive wheels
+  ez::tracking_wheel horiz_tracker(-8, 2.125, -1.57);  // This tracking wheel is perpendicular to the drive wheels
+  ez::tracking_wheel vert_tracker(-18, 2.125, 0);   // This tracking wheel is parallel to the drive wheels
 
 void initialize() {
   // Print our branding over your terminal :D
@@ -31,7 +31,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-      {"Skills\n\nFull Skills Auton", skills_auton},
+      {"Skills\n\nFull Skills Auton", awp_auton},
       {"AWP\n\nSolo AWP, Start at the right", awp_auton},
       {"Drive\n\nDrive forward and come back", drive_example},
       {"Turn\n\nTurn 3 times.", turn_example},

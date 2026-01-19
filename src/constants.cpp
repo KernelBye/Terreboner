@@ -1,5 +1,11 @@
 #include "main.h"
 
+// Distance sensors for pose correction
+pros::Distance front_dist(19);  // Front distance sensor on port 19
+pros::Distance back_dist(8);    // Back distance sensor on port 8
+pros::Distance left_dist(20);   // Left distance sensor on port 20
+pros::Distance right_dist(18);  // Right distance sensor on port 18
+
 // These are out of 127
 const int DRIVE_SPEED = 110;
 const int TURN_SPEED = 90;
