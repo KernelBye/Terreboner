@@ -23,3 +23,5 @@ void measure_offsets();
 
 /* ----- Our own stuf ----- */
 
+void awp_auton();
+void skills_auton();

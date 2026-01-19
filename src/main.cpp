@@ -3,8 +3,8 @@
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {-19, -10, -9},     // Left Chassis Ports (negative port will reverse it!)
-    {11, 6, 12},  // Right Chassis Ports (negative port will reverse it!)
+    {-11, -6, -12},     // Left Chassis Ports (negative port will reverse it!)
+    {19, 10, 9},  // Right Chassis Ports (negative port will reverse it!)
     13,      // IMU Port
     4.125,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
     600);   // Wheel RPM = cartridge * (motor gear / wheel gear)
@@ -24,13 +24,15 @@ void initialize() {
   // Configure your chassis controls
   chassis.opcontrol_curve_buttons_toggle(true);   // Enables modifying the controller curve with buttons on the joysticks
   chassis.opcontrol_drive_activebrake_set(0.0);   // Sets the active brake kP. We recommend ~2.  0 will disable.
-  chassis.opcontrol_curve_default_set(0.0, 0.0);  // Defaults for curve. If using tank, only the first parameter is used. (Comment this line out if you have an SD card!)
+  chassis.opcontrol_curve_default_set(3.5, 2.5);  // Descore curve: higher fwd/rev (3.5) for precision, moderate turn (2.5) for control
 
   // Set the drive to your own constants from autons.cpp!
   default_constants();
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
+      {"Skills\n\nFull Skills Auton", skills_auton},
+      {"AWP\n\nSolo AWP, Start at the right", awp_auton},
       {"Drive\n\nDrive forward and come back", drive_example},
       {"Turn\n\nTurn 3 times.", turn_example},
       {"Drive and Turn\n\nDrive forward, turn, come back", drive_and_turn},
@@ -149,7 +151,8 @@ void opcontrol() {
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
   // chassis.opcontrol_tank();  // Tank control
   while (true) {
-    chassis.opcontrol_tank();
+    // chassis.opcontrol_tank();
+    chassis.opcontrol_arcade_standard(ez::SPLIT); // Standard split arcade
     
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       intake.move(127);
